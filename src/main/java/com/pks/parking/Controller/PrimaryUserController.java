@@ -27,7 +27,7 @@ public class PrimaryUserController {
     }
 
     // update emp rest API
-    @PutMapping("/getPrimaryUser/{id}")
+    @PutMapping("/updatePrimaryUser/{id}")
     public PrimaryUser updatePrimaryUserById(@PathVariable String id,@RequestBody PrimaryUser newPrimaryUser){
         PrimaryUser user = primaryUserRepository.findById(id).get();
        // user.get().setBkashPhoneNumberPU(newPrimaryUser.getBkashPhoneNumberPU());
@@ -39,7 +39,7 @@ public class PrimaryUserController {
         return primaryUserRepository.save(user);
     }
 
-    @DeleteMapping("/getPrimaryUser/{id}")
+    @DeleteMapping("/delPrimaryUser/{id}")
     public void deletePrimaryUser(@PathVariable("id") String id){
         primaryUserRepository.deleteById(id);
     }
