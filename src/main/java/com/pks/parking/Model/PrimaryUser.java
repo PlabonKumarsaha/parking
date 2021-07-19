@@ -6,24 +6,23 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.persistence.*;
+import javax.validation.constraints.*;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+//@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "bkashPhoneNumberPU"}) })
 public class PrimaryUser {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long Pu_Id;
+    @Column(name = "bkashPhoneNumberPU", length = 11, unique = true)
+    @Min(11)
+    @Max(13)
     private String bkashPhoneNumberPU;
     @NotBlank(message = "User must enter a name")
     private String name;

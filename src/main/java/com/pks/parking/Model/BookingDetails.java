@@ -29,12 +29,12 @@ public class BookingDetails {
 
     // adding primary user in the system
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "primary_user_id",referencedColumnName = "bkashPhoneNumberPU")
+    @JoinColumn(name = "primary_user_id",referencedColumnName = "Pu_Id")
     private PrimaryUser primaryUser;
 
     // adding Secondary user in the system
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "secondary_user_id",referencedColumnName = "bkashPhoneNumberSU")
+    @JoinColumn(name = "secondary_user_id",referencedColumnName = "Su_Id")
     private SecondaryUser secondaryUser;
 
 

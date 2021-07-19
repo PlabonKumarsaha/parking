@@ -4,11 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -18,9 +15,14 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+//@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "bkashPhoneNumberSU"}) })
 public class SecondaryUser {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long Su_Id;
+    @Column(name = "bkashPhoneNumberSU", length = 11, unique = true)
+    @Min(11)
+    @Max(13)
     private String bkashPhoneNumberSU;
     private String name;
     @NotBlank(message = "New password is mandatory")
@@ -43,8 +45,5 @@ public class SecondaryUser {
     private int numberOfCars;
     @Min(value = 0)
     private double hourlyRentForCar;
-
-
-
 
 }

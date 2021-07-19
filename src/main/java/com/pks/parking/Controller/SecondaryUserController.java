@@ -20,13 +20,13 @@ public class SecondaryUserController {
     }
 
     @GetMapping("/getSecondaryUser/{id}")
-    public Optional<SecondaryUser> getSecondaryUser(@PathVariable("id") String id){
+    public Optional<SecondaryUser> getSecondaryUser(@PathVariable("id") Long id){
         Optional<SecondaryUser> primaryUser = secondaryUserRepository.findById(id);
         return primaryUser;
     }
 
     @PutMapping("/updateSecondaryUser/{id}")
-    public SecondaryUser updateSecondaryUserById(@PathVariable String id,@RequestBody SecondaryUser newSecondaryUser){
+    public SecondaryUser updateSecondaryUserById(@PathVariable Long id,@RequestBody SecondaryUser newSecondaryUser){
         SecondaryUser user = secondaryUserRepository.findById(id).get();
         // user.get().setBkashPhoneNumberPU(newPrimaryUser.getBkashPhoneNumberPU());
         user.setName(newSecondaryUser.getName());
@@ -44,7 +44,7 @@ public class SecondaryUserController {
     }
 
     @DeleteMapping("/delSecondaryUser/{id}")
-    public void deleteSecondaryUser(@PathVariable("id") String id){
+    public void deleteSecondaryUser(@PathVariable("id") Long id){
         secondaryUserRepository.deleteById(id);
     }
 }
