@@ -17,6 +17,11 @@ public class BookingDetailsController {
 
     @PostMapping("/addBookingDetails")
     public BookingDetails addBookingDetails(@RequestBody BookingDetails bookingDetails){
+        System.out.println(bookingDetails.getBookingId());
+        System.out.println("get primary data "+bookingDetails.getPrimaryUser());
+        System.out.println("get secondary data"+bookingDetails.getSecondaryUser());
+
+
         return bookingDetailsRepository.save(bookingDetails);
     }
 }

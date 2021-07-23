@@ -6,6 +6,7 @@ import com.pks.parking.Repository.PrimaryUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.Optional;
 
 @RestController
@@ -14,9 +15,19 @@ public class PrimaryUserController {
 
     @Autowired
     PrimaryUserRepository primaryUserRepository;
+    @PostMapping("/check")
+    public String checkController(){
+        return "in primary controller";
+    }
 
     @PostMapping("/addPrimaryUser")
-    public PrimaryUser addPrimaryUser(@RequestBody PrimaryUser primaryUser){
+    public PrimaryUser addPrimaryUser(@RequestBody PrimaryUser primaryUser) throws SQLException {
+        System.out.println(primaryUser.getLatitude());
+        System.out.println(primaryUser.getLongitude());
+        System.out.println(primaryUser.getCurrentBalance());
+        System.out.println(primaryUser.getPassword());
+        System.out.println(primaryUser.getBkashPhoneNumberPU());
+        System.out.println(primaryUser.getPu_Id());
         return primaryUserRepository.save(primaryUser);
     }
 

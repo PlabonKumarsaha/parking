@@ -22,18 +22,18 @@ public class BookingDetails {
     private String vehicleType;
     private double duration;
     @NotNull(message = "Starting time can not be null")
-    private Date startingTime;
+    private String startingTime;
     @NotNull(message = "Ending type can not be null can not be null")
-    private Date endingTime;
+    private String endingTime;
     private boolean paymentStatus;
 
     // adding primary user in the system
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "primary_user_id",referencedColumnName = "Pu_Id")
     private PrimaryUser primaryUser;
 
     // adding Secondary user in the system
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "secondary_user_id",referencedColumnName = "Su_Id")
     private SecondaryUser secondaryUser;
 

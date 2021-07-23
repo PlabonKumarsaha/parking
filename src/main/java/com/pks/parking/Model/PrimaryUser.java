@@ -21,8 +21,6 @@ public class PrimaryUser {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Pu_Id;
     @Column(name = "bkashPhoneNumberPU", length = 11, unique = true)
-    @Min(11)
-    @Max(13)
     private String bkashPhoneNumberPU;
     @NotBlank(message = "User must enter a name")
     private String name;
@@ -34,6 +32,5 @@ public class PrimaryUser {
     private double latitude;
     @NotNull
     private double longitude;
-
 
 }

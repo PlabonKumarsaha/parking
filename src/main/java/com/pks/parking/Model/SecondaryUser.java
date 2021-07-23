@@ -20,9 +20,7 @@ public class SecondaryUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Su_Id;
-    @Column(name = "bkashPhoneNumberSU", length = 11, unique = true)
-    @Min(11)
-    @Max(13)
+    @Column(name = "bkashPhoneNumberSU", length = 13, unique = true)
     private String bkashPhoneNumberSU;
     private String name;
     @NotBlank(message = "New password is mandatory")
