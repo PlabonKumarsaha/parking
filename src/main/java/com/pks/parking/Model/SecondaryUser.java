@@ -1,9 +1,14 @@
 package com.pks.parking.Model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.SelectBeforeUpdate;
+
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -19,6 +24,7 @@ import javax.validation.constraints.NotNull;
 public class SecondaryUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonProperty("id")
     private Long Su_Id;
     @Column(name = "bkashPhoneNumberSU", length = 13, unique = true)
     private String bkashPhoneNumberSU;
