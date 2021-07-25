@@ -23,8 +23,8 @@ public class PrimaryUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonProperty("id")
-    private Long Pu_Id;
+    //@JsonProperty("id")
+    private Long puId;
     @Column(name = "bkashPhoneNumberPU", length = 11, unique = true)
     private String bkashPhoneNumberPU;
     @NotBlank(message = "User must enter a name")

@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PrimaryUserRepository extends JpaRepository<PrimaryUser, Long> {
+    PrimaryUser findByBkashPhoneNumberPU(String number);
 }

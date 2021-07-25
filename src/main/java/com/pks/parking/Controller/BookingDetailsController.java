@@ -27,11 +27,11 @@ public class BookingDetailsController {
 
     @PostMapping("/addBookingDetails")
     public BookingDetails addBookingDetails(@RequestBody BookingDetails bookingDetails){
-        System.out.println(bookingDetails.getBookingId());
+       // System.out.println(bookingDetails.getBookingId());
         System.out.println("get primary data "+bookingDetails.getPrimaryUser());
         System.out.println("get secondary data"+bookingDetails.getSecondaryUser());
-        PrimaryUser primaryUser = primaryUserRepository.findById(bookingDetails.getPrimaryUser().getPu_Id()).orElse(null);
-        SecondaryUser secondaryUser = secondaryUserRepository.findById(bookingDetails.getSecondaryUser().getSu_Id()).orElse(null);
+        PrimaryUser primaryUser = primaryUserRepository.findById(bookingDetails.getPrimaryUser().getPuId()).orElse(null);
+        SecondaryUser secondaryUser = secondaryUserRepository.findById(bookingDetails.getSecondaryUser().getSuId()).orElse(null);
         if(primaryUser != null){
             bookingDetails.setPrimaryUser(primaryUser);
         }

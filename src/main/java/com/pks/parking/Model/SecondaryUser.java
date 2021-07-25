@@ -24,8 +24,8 @@ import javax.validation.constraints.NotNull;
 public class SecondaryUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonProperty("id")
-    private Long Su_Id;
+    //@JsonProperty("id")
+    private Long suId;
     @Column(name = "bkashPhoneNumberSU", length = 13, unique = true)
     private String bkashPhoneNumberSU;
     private String name;

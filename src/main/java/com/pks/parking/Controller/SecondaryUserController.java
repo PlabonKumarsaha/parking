@@ -15,8 +15,14 @@ public class SecondaryUserController {
     @Autowired
     SecondaryUserRepository secondaryUserRepository;
     @PostMapping("/addSecondaryUser")
-    public SecondaryUser addSecondaryUser(@RequestBody SecondaryUser secondaryUser){
-        return secondaryUserRepository.save(secondaryUser);
+    public String addSecondaryUser(@RequestBody SecondaryUser secondaryUser){
+        SecondaryUser getUserByPhoneNumber = secondaryUserRepository.findByBkashPhoneNumberSU(secondaryUser.getBkashPhoneNumberSU());
+        if(getUserByPhoneNumber ==null){
+            secondaryUserRepository.save(secondaryUser);
+            return "Welcome to the system added";
+        }else {
+            return "already registered with the number";
+        }
     }
 
     @GetMapping("/getSecondaryUser/{id}")
@@ -28,7 +34,6 @@ public class SecondaryUserController {
     @PutMapping("/updateSecondaryUser/{id}")
     public SecondaryUser updateSecondaryUserById(@PathVariable Long id,@RequestBody SecondaryUser newSecondaryUser){
         SecondaryUser user = secondaryUserRepository.findById(id).get();
-        // user.get().setBkashPhoneNumberPU(newPrimaryUser.getBkashPhoneNumberPU());
         user.setName(newSecondaryUser.getName());
         user.setPassword(newSecondaryUser.getPassword());
         user.setLatitude(newSecondaryUser.getLatitude());
