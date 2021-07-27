@@ -79,7 +79,7 @@ public class PrimaryUserController {
     public List<BookingDetailsContainer> getAllBooked(@PathVariable("id") Long id) {
         System.out.println("id"+id);
         List<BookingDetailsContainer>returnDetails = new ArrayList<>();
-        List<BookingDetails> getALl = bookingDetailsRepository.findByPrimaryUserID(id);
+        List<BookingDetails> getALl = bookingDetailsRepository.findByPrimaryUserDetailsByID(id);
         //System.out.println("details "+ getALl.get(0));
         for(int i =0 ;i< getALl.size(); i++) {
             BookingDetailsContainer bookingDetailsContainer = new BookingDetailsContainer();
@@ -90,8 +90,9 @@ public class PrimaryUserController {
             bookingDetailsContainer.setDuration(getALl.get(i).getDuration());
             bookingDetailsContainer.setVehicleType(getALl.get(i).getVehicleType());
             bookingDetailsContainer.setPaymentStatus(getALl.get(i).getPaymentStatus());
+            bookingDetailsContainer.setPrimaryUserPuId(getALl.get(i).getPrimaryUser().getPuId());
+            bookingDetailsContainer.setSecondaryUserSuId(getALl.get(i).getSecondaryUser().getSuId());
             returnDetails.add(bookingDetailsContainer);
-
         }
 
         System.out.println("booking details container"+ returnDetails.get(0));

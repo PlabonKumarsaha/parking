@@ -23,5 +23,7 @@ public class BookingDetailsContainer {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endingTime;
     private Boolean paymentStatus;
+    private Long primaryUserPuId;
+    private Long secondaryUserSuId;
 
 }
