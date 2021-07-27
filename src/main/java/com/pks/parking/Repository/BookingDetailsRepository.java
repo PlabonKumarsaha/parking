@@ -24,4 +24,11 @@ public interface BookingDetailsRepository extends JpaRepository<BookingDetails,L
             nativeQuery = true
     )
     public List<BookingDetails>findByPrimaryUserDetailsByID(@Param("primaryUserId") Long primaryUserId);
+
+    @Query(
+            value = "SELECT * FROM parking.booking_details WHERE primary_user_pu_id =?1 AND booking_id = ?2 ",
+            nativeQuery = true
+    )
+    public BookingDetails findDetailsByBookingIDAndPrimaryId(@Param("primaryUserId") Long primaryUserId ,
+                                                              @Param("bookingId") Long bookingId);
 }
