@@ -12,7 +12,6 @@ import java.util.List;
 public interface BookingDetailsRepository extends JpaRepository<BookingDetails,Long> {
 
 
-//    @Query("select details from BookingDetails details where details.bookingId=:primaryUserId")
     @Query(
             value = "SELECT * FROM parking.booking_details details WHERE details.secondary_user_su_id = ?1",
             nativeQuery = true
@@ -30,5 +29,12 @@ public interface BookingDetailsRepository extends JpaRepository<BookingDetails,L
             nativeQuery = true
     )
     public BookingDetails findDetailsByBookingIDAndPrimaryId(@Param("primaryUserId") Long primaryUserId ,
-                                                              @Param("bookingId") Long bookingId);
+                                                             @Param("bookingId") Long bookingId);
+
+    @Query(
+            value = "SELECT * FROM parking.booking_details WHERE secondary_user_su_id =?1 AND booking_id = ?2 ",
+            nativeQuery = true
+    )
+    public BookingDetails findDetailsByBookingIDAndSecondaryId(@Param("secondaryUserId") Long secondaryUserId ,
+                                                             @Param("bookingId") Long bookingId);
 }

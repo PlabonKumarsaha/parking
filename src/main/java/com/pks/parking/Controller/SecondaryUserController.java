@@ -86,4 +86,25 @@ public class SecondaryUserController {
         System.out.println("booking details container"+ returnDetails.get(0));
         return returnDetails;
     }
+
+
+    @GetMapping("/getSecondaryUser/{id}/booking/{bid}")
+    public BookingDetailsContainer getIndividualDetails(@PathVariable("id") Long id, @PathVariable("bid") Long bid ) {
+        System.out.println("id"+id + "  "+"bid" +bid);
+        BookingDetailsContainer returnDetails = new BookingDetailsContainer();
+        BookingDetails bd = new BookingDetails();
+        bd = bookingDetailsRepository.findDetailsByBookingIDAndSecondaryId(id,bid);
+        System.out.println("bd"+bd);
+
+        returnDetails.setBookingId(bd.getBookingId());
+        returnDetails.setPaymentStatus(bd.getPaymentStatus());
+        returnDetails.setDuration(bd.getDuration());
+        returnDetails.setVehicleType(bd.getVehicleType());
+        returnDetails.setStartingTime(bd.getStartingTime());
+        returnDetails.setEndingTime(bd.getEndingTime());
+        returnDetails.setPrimaryUserPuId(bd.getPrimaryUser().getPuId());
+        returnDetails.setSecondaryUserSuId(bd.getSecondaryUser().getSuId());
+        System.out.println(returnDetails);
+        return returnDetails;
+    }
 }
