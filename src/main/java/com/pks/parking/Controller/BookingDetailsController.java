@@ -6,7 +6,6 @@ import com.pks.parking.Model.SecondaryUser;
 import com.pks.parking.Repository.BookingDetailsRepository;
 import com.pks.parking.Repository.PrimaryUserRepository;
 import com.pks.parking.Repository.SecondaryUserRepository;
-import org.springframework.context.annotation.Primary;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

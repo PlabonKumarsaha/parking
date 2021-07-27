@@ -1,20 +1,34 @@
 package com.pks.parking.Controller;
 
 
+import com.pks.parking.Model.BookingDetails;
+import com.pks.parking.Model.BookingDetailsContainer;
 import com.pks.parking.Model.PrimaryUser;
+import com.pks.parking.Repository.BookingDetailsRepository;
 import com.pks.parking.Repository.PrimaryUserRepository;
+import com.pks.parking.Repository.SecondaryUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/parking/primary/")
 public class PrimaryUserController {
 
     @Autowired
-    PrimaryUserRepository primaryUserRepository;
+    private  BookingDetailsRepository bookingDetailsRepository;
+    @Autowired
+    private  PrimaryUserRepository primaryUserRepository;
+    @Autowired
+    private  SecondaryUserRepository secondaryUserRepository;
+//    public PrimaryUserController(BookingDetailsRepository bookingDetailsRepository, PrimaryUserRepository primaryUserRepository, SecondaryUserRepository secondaryUserRepository) {
+//        this.bookingDetailsRepository = bookingDetailsRepository;
+//        this.primaryUserRepository = primaryUserRepository;
+//        this.secondaryUserRepository = secondaryUserRepository;
+//    }
     @PostMapping("/check")
     public String checkController(){
         return "in primary controller";
@@ -59,6 +73,29 @@ public class PrimaryUserController {
     @DeleteMapping("/delPrimaryUser/{id}")
     public void deletePrimaryUser(@PathVariable("id") Long id){
         primaryUserRepository.deleteById(id);
+    }
+
+    @GetMapping("/getAllBooked/{id}")
+    public List<BookingDetailsContainer> getAllBooked(@PathVariable("id") Long id) {
+        System.out.println("id"+id);
+        List<BookingDetailsContainer>returnDetails = new ArrayList<>();
+        List<BookingDetails> getALl = bookingDetailsRepository.findByPrimaryUserID(id);
+        //System.out.println("details "+ getALl.get(0));
+        for(int i =0 ;i< getALl.size(); i++) {
+            BookingDetailsContainer bookingDetailsContainer = new BookingDetailsContainer();
+            bookingDetailsContainer.setBookingId(getALl.get(i).getBookingId());
+            bookingDetailsContainer.setDuration(getALl.get(i).getDuration());
+            bookingDetailsContainer.setEndingTime(getALl.get(i).getEndingTime());
+            bookingDetailsContainer.setStartingTime(getALl.get(i).getStartingTime());
+            bookingDetailsContainer.setDuration(getALl.get(i).getDuration());
+            bookingDetailsContainer.setVehicleType(getALl.get(i).getVehicleType());
+            bookingDetailsContainer.setPaymentStatus(getALl.get(i).getPaymentStatus());
+            returnDetails.add(bookingDetailsContainer);
+
+        }
+
+        System.out.println("booking details container"+ returnDetails.get(0));
+        return returnDetails;
     }
 
 

@@ -1,7 +1,6 @@
 package com.pks.parking.Controller;
 
 
-import com.pks.parking.Model.PrimaryUser;
 import com.pks.parking.Model.SecondaryUser;
 import com.pks.parking.Repository.SecondaryUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
