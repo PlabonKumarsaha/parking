@@ -118,6 +118,12 @@ public class PrimaryUserController {
         return returnDetails;
     }
 
+    @GetMapping("/login/{phoneNo}/{password}")
+    public PrimaryUser login(@PathVariable("phoneNo") String phoneNo,@PathVariable("password") String pass) {
+        PrimaryUser user = primaryUserRepository.loginPrimary(phoneNo, pass);
+        return user;
+    }
+
 
 
 }
