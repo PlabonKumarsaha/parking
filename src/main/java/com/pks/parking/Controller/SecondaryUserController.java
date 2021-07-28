@@ -3,6 +3,7 @@ package com.pks.parking.Controller;
 
 import com.pks.parking.Model.BookingDetails;
 import com.pks.parking.Model.BookingDetailsContainer;
+import com.pks.parking.Model.PrimaryUser;
 import com.pks.parking.Model.SecondaryUser;
 import com.pks.parking.Repository.BookingDetailsRepository;
 import com.pks.parking.Repository.PrimaryUserRepository;
@@ -107,6 +108,13 @@ public class SecondaryUserController {
         System.out.println(returnDetails);
         return returnDetails;
     }
+
+    @GetMapping("/login/{phoneNo}/{password}")
+    public SecondaryUser login(@PathVariable("phoneNo") String phoneNo, @PathVariable("password") String pass) {
+        SecondaryUser user = secondaryUserRepository.loginSecondary(phoneNo, pass);
+        return user;
+    }
+
 
 
 }

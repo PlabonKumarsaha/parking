@@ -12,8 +12,8 @@ public interface SecondaryUserRepository extends JpaRepository<SecondaryUser, Lo
 
     SecondaryUser findByBkashPhoneNumberSU(String number);
 
-    @Query(value = "SELECT * FROM parking.primary_user where primary_user.bkash_phone_numberpu =?1 and primary_user.password =?2",
+    @Query(value = "SELECT * FROM parking.secondary_user where secondary_user.bkash_phone_numbersu =?1 and secondary_user.password =?2",
             nativeQuery = true)
-    PrimaryUser loginSecondary(@Param("phoneNum") String phoneNum, @Param("password") String password);
+    SecondaryUser loginSecondary(@Param("phoneNum") String phoneNum, @Param("password") String password);
 
 }
